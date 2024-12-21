@@ -101,7 +101,7 @@ save\r
 """
         finalpayload = urllib.parse.quote_plus(payload).replace("+","%20").replace("%2F","/").replace("%25","%").replace("%3A",":")
         doubleEncode = input("\033[35m" +"\nDo you want to double encode the payload? (y/n): "+ "\033[0m")
-        if("y" in doubleEncode):
+        if "y" in doubleEncode:
                     finalpayload = urllib.parse.quote_plus(finalpayload)
         else:
             pass
