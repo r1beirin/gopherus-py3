@@ -2,7 +2,7 @@ import argparse
 import sys
 sys.path.insert(0, './scripts/')
 #from scripts import FastCGI, MySQL, PostgreSQL, DumpMemcached, PHPMemcached, PyMemcached, RbMemcached, Redis, SMTP, Zabbix
-from scripts import Redis
+from scripts import Redis, MySQL
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--exploit",
@@ -39,14 +39,14 @@ if not args.exploit:
     parser.print_help()
     exit()
 
-# if args.exploit == "mysql":
-#     MySQL.MySQL()
+if args.exploit == "mysql":
+    MySQL.MySQL()
 # elif args.exploit == "postgresql":
 #     PostgreSQL.PostgreSQL()
 # elif args.exploit == "fastcgi":
 #     FastCGI.FastCGI()
-# elif args.exploit == "redis":
-#     Redis.Redis()
+elif args.exploit == "redis":
+    Redis.Redis()
 # elif args.exploit == "smtp":
 #     SMTP.SMTP()
 # elif args.exploit == "zabbix":
@@ -59,7 +59,5 @@ if not args.exploit:
 #     RbMemcached.RbMemcached()
 # elif args.exploit == "pymemcache":
 #     PyMemcached.PyMemcached()
-if args.exploit == "redis":
-    Redis.Redis()
 else:
     parser.print_help()
